@@ -1,0 +1,11 @@
+#!/bin/sh
+
+dir=$(pwd)
+base="file://$dir"
+locale=$(echo $LANG | sed "s/\(\w\+\)_\(\w\+\).\+/\1-\2/")
+time_zone=$(timedatectl | grep "Time zone" | sed "s|.\+ \(\w\+\/\w\+\).\+|\1|")
+
+sed -i "s|%dir%|$dir|" archive
+sed -i "s|%base%|$base|" assets/main.js
+sed -i "s|%locale%|$locale|" assets/main.js
+sed -i "s|%timeZone%|$time_zone|" assets/main.js

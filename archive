@@ -1,0 +1,14 @@
+#!/bin/sh
+
+dir="%dir%" && cd "$dir"
+host=$(echo "$1" | awk -F/ '{print $3}')
+time="$(date +"%s%3N")"
+mkdir -p "$host/$time" && cd "$host/$time"
+LANG=en_US.UTF-8 wget -o log -EHkp -nH -U "" -e robots=off --no-cookies --random-wait "$1" 2>/dev/null
+wget -O favicon.png "https://www.google.com/s2/favicons?domain=$host"
+[ $(wc -c < favicon.png) == 0 ] && cp "$dir/assets/favicon.png" favicon.png
+[ $(wc -c < $dir/links.js) -gt 20 ] && comma=","
+sed -i "s| \[| [[\"$1\",\"$time\"]$comma|" "$dir/links.js"
+file=$(grep -m 1 "Saving to" log | sed "s|.\+: ‘\([^’]\+\)’|\1|")
+mv "$file" $(echo $file | sed "s|[^\/]\+$|index.html|")
+rm log
