@@ -27,7 +27,7 @@ These are the environment variables that have to be set before you can use the p
 
 The script sets `%dir%` based on the directory you are currently in (e.g. /srv/http/archive), `%base%` based on `%dir%` (e.g. file:///srv/http/archive) and `%locale%` and `%timeZone%` based respectively on your locale (e.g. en-GB) and [timezone](https://www.iana.org/time-zones) (e.g. Australia/Sydney).
 
-Now copy `archive` to /user/local/bin:
+Now copy `archive` to /usr/local/bin:
 ```sh
 sudo cp archive /usr/local/bin
 ```
