@@ -10,5 +10,5 @@ wget -O favicon.png "https://www.google.com/s2/favicons?domain=$host"
 [ $(wc -c < $dir/links.js) -gt 20 ] && comma=","
 sed -i "s| \[| [[\"$1\",\"$time\"]$comma|" "$dir/links.js"
 file=$(grep -m 1 "Saving to" log | sed "s|.\+: ‘\([^’]\+\)’|\1|")
-mv "$file" $(echo $file | sed "s|[^\/]\+$|index.html|")
+mv -n "$file" $(echo $file | sed "s|[^\/]\+$|index.html|")
 rm log
