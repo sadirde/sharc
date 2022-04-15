@@ -52,3 +52,35 @@ If you click on the number, you will get to a subpage with all snapshots of the 
 Below that, there is a link to a subpage to see an overview of all archived URLs of the respective domain.
 
 ![Overview of all URLs of a domain](assets/img/03.png)
+
+## Hosting a sharc instance
+What if you don't want to save the archive on your local machine, but on your server and make it accessible to the world, is that possible? **Yes!**
+
+There are probably several ways you could do it, but here's a simple way I can recommend:
+
+1. Download/clone the repo to a directory of choice (e.g. /var/www/html/archive) and do the setup as described above
+2. Then add a file named `archive` on your **local** machine with the following content:
+
+```sh
+#!/bin/sh
+
+ssh <user>@<hostname> "archive $1; exit"
+```
+Replace `<user>` with your SSH username and `<hostname>`  with the IP or address of your site.
+
+3. Make the file executable:
+```sh
+sudo chmod +x archive
+```
+4. Move the file to /usr/local/bin
+```sh
+sudo mv archive /usr/local/bin
+```
+
+That's it! Now every time you want to add a page to your archive, simply run the following command on your local machine:
+
+```sh
+archive <site>
+```
+
+The page will be downloaded on your server and will be publicly visible at the URL you chose above (e.g. https://example.com/archive).
