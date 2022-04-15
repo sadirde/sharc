@@ -45,8 +45,6 @@ archive <link>
 ```
 in your terminal. This downloads the page and adds the link in links.js.
 
-Um zu der Übersichtsseite zu kommen, öffne entweder index.html im Browser oder – wenn du die Einrichtung unter "Anmerkung" gemacht hast – navigiere zu http://localhost/archive.
-
 To get to the overview page, either open index.html in the browser or - if you have set it up like described in "**Note**" - navigate to http://localhost/archive.
 
 
