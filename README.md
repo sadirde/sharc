@@ -11,10 +11,9 @@ In `archive` at the top you can see the line
 dir="%dir%" && cd "$dir"
 ```
 
-and in `assets/main.js` the first three lines are:
+and in `assets/main.js` the first two lines are:
 
 ```js
-const base = "%base%";
 const locale = "%locale%";
 const timeZone = "%timeZone%";
 ```
@@ -25,17 +24,11 @@ These are the environment variables that have to be set before you can use the p
 ./setup
 ```
 
-The script sets `%dir%` based on the directory you are currently in (e.g. /srv/http/archive), `%base%` based on `%dir%` (e.g. file:///srv/http/archive) and `%locale%` and `%timeZone%` based respectively on your locale (e.g. en-GB) and [timezone](https://www.iana.org/time-zones) (e.g. Australia/Sydney).
+The script sets `%dir%` based on the directory you are currently in (e.g. /srv/http/archive) and `%locale%` and `%timeZone%` based respectively on your locale (e.g. en-GB) and [timezone](https://www.iana.org/time-zones) (e.g. Australia/Sydney).
 
 Now copy `archive` to /usr/local/bin:
 ```sh
 sudo cp archive /usr/local/bin
-```
-
-**Note**: If you have a server installed locally, you can also manually adjust `base` accordingly. For example, if you have Apache installed and your `dir` is /var/www/html/archive, it can look like this:
-
-```js
-const base = "//localhost/archive";
 ```
 
 ## How to use
@@ -45,10 +38,7 @@ archive <link>
 ```
 in your terminal. This downloads the page and adds the link in links.js.
 
-Um zu der Übersichtsseite zu kommen, öffne entweder index.html im Browser oder – wenn du die Einrichtung unter "Anmerkung" gemacht hast – navigiere zu http://localhost/archive.
-
-To get to the overview page, either open index.html in the browser or - if you have set it up like described in "**Note**" - navigate to http://localhost/archive.
-
+To get to the overview page, either open index.html in the browser or – if you have a web server installed locally – navigate to http://localhost/archive (or whatever your path is).
 
 ## How it's organized
 In addition to the date and the link, you can see a third column in the table that shows the number of snapshots of the URL.

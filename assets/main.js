@@ -1,4 +1,3 @@
-const base = "%base%";
 const locale = "%locale%";
 const timeZone = "%timeZone%";
 
@@ -16,6 +15,16 @@ const groups = links.reduce((group, element) => {
     !group.hosts[host].includes(element[0]) && group.hosts[host].push(element[0]);
     return group;
 }, { hosts: {} });
+const getAbsoluteUrl = (function () {
+    let $a;
+
+    return function (url) {
+        if (!$a) {  $a = document.createElement("a"); }
+        $a.href = url;
+
+        return $a.href;
+    };
+})();
 const hash = window.location.hash.substring(1);
 
 if (hash !== "" && groups[hash]) {
@@ -77,9 +86,9 @@ function createElement(tagName, attributes) {
 }
 
 function createFavicon(url, timestamp) {
-    url = url.replace(/https?:\/{2}([^\/]+)\/?.*$/, `${base}/$1/${timestamp}/favicon.png`);
+    url = url.replace(/https?:\/{2}([^\/]+)\/?.*$/, `$1/${timestamp}/favicon.png`);
     return createElement("img", {
-        src: url,
+        src: getAbsoluteUrl(url),
         width: 16,
         height: 16
     });
@@ -125,6 +134,6 @@ function getDateTime(timestamp) {
 }
 
 function getLink(url, timestamp) {
-    return url.replace(/https?:\/{2}([^\/]+)\/?/, `${base}/$1/${timestamp}/`)
-        .replace(/\/[^\/]*$/, "/index.html");
+    return getAbsoluteUrl(url.replace(/https?:\/{2}([^\/]+)\/?/, `$1/${timestamp}/`)
+        .replace(/\/[^\/]*$/, "/index.html"));
 }
