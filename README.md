@@ -80,7 +80,7 @@ sudo mv archive /usr/local/bin
 That's it! Now every time you want to add a page to your archive, simply run the following command on your local machine:
 
 ```sh
-archive <site>
+archive <link>
 ```
 
 The page will be downloaded on your server and will be publicly visible at the URL you chose above (e.g. https://example.com/archive).
